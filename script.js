@@ -99,14 +99,31 @@ function print_results() {
     }
 }
 
+function printEmojis(choice) {
+    if (choice.toLowerCase() == "rock") {
+        return "👊";
+    }
+    if (choice.toLowerCase() == "paper") {
+        return "✋";
+    }
+    if (choice.toLowerCase() == "scissor") {
+        return "✌️";
+    }
+
+
+}
+
 
 const buttons = document.querySelectorAll("button");
+
 const scoreInfo = document.querySelector(".score-info");
-const scoreMessage = document.querySelector(".score-message")
+const scoreMessage = document.querySelector(".score-message");
+
 const compScore = document.querySelector(".computerScore");
 const playScore = document.querySelector(".playerScore");
 
-
+const compEmoji = document.querySelector(".computerSign");
+const playerEmoji = document.querySelector(".playerSign");
 
 buttons.forEach((button) => {
     button.addEventListener('click', function() {
@@ -114,7 +131,9 @@ buttons.forEach((button) => {
         scoreInfo.textContent = printScoreInfo(button.id, computer);
         scoreMessage.textContent = printScoreMessage(button.id, computer);
         compScore.textContent = "Computer score : " + computerScore;
+        compEmoji.textContent = printEmojis(computer);
         playScore.textContent = "Player score : " + playerScore;
+        playerEmoji.textContent = printEmojis(button.id);
         print_results();
     }, false)
 })
